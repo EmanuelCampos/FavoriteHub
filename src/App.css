@@ -20,3 +20,17 @@
 .App-link {
   color: #09d3ac;
 }
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 500px;
+  border: grey 5px solid;
+  background: red;
+}
+
+p {
+  color:black;
+}

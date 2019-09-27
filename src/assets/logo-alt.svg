@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="198" height="56.338" viewBox="0 0 198 56.338">
+  <g id="Grupo_1" data-name="Grupo 1" transform="translate(-82 -19.662)">
+    <text id="FavoriteHub" transform="translate(82 68)" fill="#fff" font-size="32" font-family="Montserrat-Regular, Montserrat"><tspan x="0" y="0">Favorite</tspan><tspan y="0" font-family="Montserrat-Bold, Montserrat" font-weight="700">Hub</tspan></text>
+    <path id="star" d="M7.7.587l2.353,4.855L15.4,6.18l-3.89,3.739.949,5.311L7.7,12.685,2.94,15.23l.95-5.311L0,6.18l5.345-.738Z" transform="translate(153 27.413)" fill="#fff"/>
+    <path id="star-2" data-name="star" d="M9.978.587l3.05,6.293,6.928.957-5.042,4.846,1.231,6.884-6.167-3.3-6.168,3.3,1.232-6.884L0,7.837,6.928,6.88Z" transform="translate(171 19.075)" fill="#fff"/>
+    <path id="star-3" data-name="star" d="M7.7.587l2.353,4.855L15.4,6.18l-3.89,3.739.949,5.311L7.7,12.685,2.94,15.23l.95-5.311L0,6.18l5.345-.738Z" transform="translate(194 27.413)" fill="#fff"/>
+  </g>
+</svg>

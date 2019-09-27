@@ -1,0 +1,164 @@
+body {
+  background-color: #303a52;
+}
+
+hr {
+  border-color: #283148;
+  width: 80%;
+  opacity: 0.1;
+}
+
+.MuiTypography-h5 {
+  line-height: 0.6 !important;
+}
+
+.MuiTypography-subtitle2 {
+  font-size: 1em !important;
+  line-height: 1 !important;
+}
+
+.makeStyles-cover-3 {
+  width: 100px;
+  height: 100px;
+}
+
+.MuiCard-root {
+  height: 100px;
+}
+
+.makeStyles-cover-3 {
+  width: 100px !important;
+}
+
+button {
+  margin: 5px;
+  width: 199px;
+  height: 33px;
+  padding: 1px !important;
+}
+
+.button-blue {
+  border: none;
+  background-color: #3293e6;
+  color: white;
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 1em;
+}
+
+.e-card {
+  display: flex;
+  margin-top: 10px;
+  border-left: 6px solid #3293e6;
+}
+
+.cards-box {
+  margin-top: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+input {
+  margin-top: 15px;
+  width: 193.5px;
+  height: 33px;
+  font-size: 1em;
+  text-align: center;
+}
+
+.box {
+  position: absolute;
+  top: -20px;
+  display: block;
+  width: 100%;
+  height: 116px;
+  background-color: #262f43;
+  border-radius: 100px;
+  z-index: 1;
+}
+
+.box-itens {
+  margin-top: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.users {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 100%;
+}
+
+.card-button {
+  font-size: 8px;
+}
+
+.avatar {
+  margin-left: 3%;
+  margin-top: 3%;
+  max-height: 64px;
+}
+
+@media (min-width: 1281px) {
+  .box-itens {
+    margin-top: 3%;
+  }
+  .cards-box {
+    margin-top: 10%;
+  }
+
+  .e-card {
+    display: flex;
+    margin-left: 25px;
+  }
+
+  .users {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-left: 15%;
+    width: 800px;
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+
+  input {
+    width: 200px;
+  }
+
+  button {
+    width: 208px;
+  }
+}
+
+/* squares */
+
+.squares li {
+  width: 40px;
+  height: 40px;
+  background-color: #262f43;
+  display: block;
+  position: absolute;
+  bottom: -40px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
+.cover {
+  width: 100px;
+}
+
