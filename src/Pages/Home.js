@@ -16,35 +16,43 @@ import { Component } from 'react'
 import axios from 'axios'
 
 
-const api = axios.create({ baseURL : 'https://api.github.com/users/' })
+const api = axios.create({ baseURL: 'https://api.github.com/users/' })
 
 class Home extends Component {
-    constructor(props){
-        super(props);
-        this.onSubmit = this.onSubmit.bind(this);
-      }
-    
-    onSubmit(e) {    
-        var title = this.title.value;
-        this.loadProfile();
-      }
-    
-      state = {
-        profiles: [],
-        isLoading: false
+  constructor(props) {
+    super(props);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onSubmit(e) {
+    var title = this.title.value;
+    this.loadProfile();
+  }
+
+  state = {
+    profiles: [],
+    isLoading: false
+  }
+
+  componentDidMount() {
+
+  }
+
+
+  loadProfile = async () => {
+    try {
+      const profiles = this.state.profiles;
+      const response = await api.get(`${this.title.value}`)
+      profiles.push(response.data)
+      this.setState({ profiles: profiles });
+    } catch {
+      alert("Error, tente novamente.")
     }
-    
-    componentDidMount() {
-        
-       
-    }
-    
-    loadProfile = async () => {
-        const profiles = this.state.profiles;
-        const response = await api.get(`${this.title.value}`)
-        profiles.push(response.data)
-        this.setState({ profiles: profiles });
-    }
+
+  }
+
+
+
 
   render() {
     const { profiles } = this.state;
@@ -75,29 +83,29 @@ class Home extends Component {
 
           <hr></hr>
 
-            { this.state.isLoading &&
-              <span>Aguarde, carregando...</span>
-            }
+          {this.state.isLoading &&
+            <span>Aguarde, carregando...</span>
+          }
           <div className="users">
-            
-          {profiles.map(profile => 
-                    <Card className="e-card">
+
+            {profiles.map(profile =>
+              <Card className="e-card" key={profile.id}>
                 <div className="details">
-                  
+
                   <CardContent className="content">
                     <Typography component="h5" variant="h5">
                       {profile.name}
                     </Typography>
                     <Typography variant="subtitle1" color="textSecondary">
-                    {profile.blog}
+                      {profile.blog}
                     </Typography>
                     <Typography variant="subtitle2" color="textSecondary">
                     </Typography>
                     <Typography variant="subtitle2" color="textSecondary">
-                    <Link style={{ textDecoration: 'none', color: '#A2A7AC', fontstyle: 'italic' }} to="google.com">Repositorios :</Link> {profile.public_repos}  
+                      <Link style={{ textDecoration: 'none', color: '#A2A7AC', fontstyle: 'italic' }} to="google.com">Repositorios :</Link> {profile.public_repos}
                     </Typography>
                     <Typography variant="subtitle2" color="textSecondary">
-                    <Link style={{ textDecoration: 'none', color: '#A2A7AC', fontstyle: 'italic' }} to="google.com">Seguidores :</Link> {profile.followers}      
+                      <Link style={{ textDecoration: 'none', color: '#A2A7AC', fontstyle: 'italic' }} to="google.com">Seguidores :</Link> {profile.followers}
                     </Typography>
                   </CardContent>
                 </div>
@@ -106,9 +114,9 @@ class Home extends Component {
                   image={profile.avatar_url}
                   title="Live from space album cover"
                 />
-          
+
               </Card>
-          )}
+            )}
           </div>
         </div>
       </div>
