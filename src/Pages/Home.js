@@ -23,9 +23,15 @@ const api = axios.create({ baseURL: 'https://api.github.com/users/' })
 
 class Home extends Component {
   constructor(props) {
-    super(props);
+    super();
     this.onSubmit = this.onSubmit.bind(this);
     this.onClick = this.onClick.bind(this);
+
+    this.state = {
+      profiles: [],
+      isLoading: false
+    }
+
   }
 
   onSubmit(e) {
@@ -34,17 +40,9 @@ class Home extends Component {
     this.title.value = '';
   }
 
+
   onClick(e) {
     this.deleteProfile();
-  }
-
-  state = {
-    profiles: [],
-    isLoading: false
-  }
-
-  componentDidMount() {
-
   }
 
   deleteProfile = (i) => {
@@ -55,6 +53,16 @@ class Home extends Component {
     this.setState({ profiles: profiles })
   }
 
+  componentDidMount() {
+    const profiles = this.state.profiles;
+    const dados = JSON.parse(localStorage.getItem('perfil'))
+
+    if (dados == null) {
+      localStorage.setItem('perfil', JSON.stringify(this.state.profiles))
+    } else {
+      this.setState({ profiles: dados })
+    }
+  }
 
   loadProfile = async () => {
     try {
@@ -67,6 +75,8 @@ class Home extends Component {
     } catch {
       alert("Error, tente novamente.")
     }
+
+
 
   }
 

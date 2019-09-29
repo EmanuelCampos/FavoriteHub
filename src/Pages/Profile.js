@@ -52,7 +52,6 @@ class Profile extends Component {
             repos.push(...responses.data)
 
             this.setState({ repos: repos })
-            console.log(repos)
 
         } catch {
             alert("Error, tente novamente.")
@@ -79,7 +78,6 @@ class Profile extends Component {
                     <div className="users">
 
                         <Link to="/"><Button
-                            color='white'
                             content='Voltar'
                             icon='arrow left'
                             floated='left'
@@ -89,7 +87,7 @@ class Profile extends Component {
 
                         {profiles.map((profile, id) =>
 
-                            <Card>
+                            <Card key={profile.login}>
                                 <Image src={profile.avatar_url} wrapped ui={false} />
                                 <Card.Content>
                                     <Card.Header>{profile.name}</Card.Header>
@@ -116,7 +114,7 @@ class Profile extends Component {
                     <div className="repos">
                         {repos.map(repo =>
 
-                            <Card className="r-card">
+                            <Card className="r-card" key={repo.name}>
                                 <Card.Content>
                                     <Card.Header>{repo.name}</Card.Header>
                                     <Card.Meta>
