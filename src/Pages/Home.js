@@ -4,6 +4,8 @@ import Logo from "../assets/logo-alt.svg";
 import Reset from "./Reset.css";
 import Avatar from '../assets/avatar.jpeg'
 import { Link } from 'react-router-dom'
+import { Input } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
@@ -22,11 +24,16 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onClick = this.onClick.bind(this);
   }
 
   onSubmit(e) {
     var title = this.title.value;
     this.loadProfile();
+  }
+
+  onClick(e) {
+    this.deleteProfile();
   }
 
   state = {
@@ -35,16 +42,23 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    const dados = JSON.parse(localStorage.getItem('perfil'))
+    this.setState({ profiles: dados })
 
   }
 
+  deleteProfile = () => {
+    localStorage.setItem('perfil', JSON.stringify(''))
+  }
 
   loadProfile = async () => {
     try {
       const profiles = this.state.profiles;
       const response = await api.get(`${this.title.value}`)
       profiles.push(response.data)
-      this.setState({ profiles: profiles });
+      this.setState({ profiles: profiles })
+      localStorage.setItem('perfil', JSON.stringify(this.state.profiles))
+
     } catch {
       alert("Error, tente novamente.")
     }
@@ -56,7 +70,6 @@ class Home extends Component {
 
   render() {
     const { profiles } = this.state;
-    console.log('array:', profiles)
     return (
       <div className="container">
         <div className="box">
@@ -66,11 +79,12 @@ class Home extends Component {
               <input
                 ref={c => (this.title = c)}
                 name="title"
-                id="username"
                 type="text"
-                placeholder="Usuário do Github"
+                icon="user"
+                iconPosition='left'
+                placeholder="Usuário do GitHub"
                 autoComplete="false"
-              ></input>
+              />
             </form>
             <button
               onClick={this.onSubmit}
@@ -88,8 +102,9 @@ class Home extends Component {
           }
           <div className="users">
 
+
             {profiles.map(profile =>
-              <Card className="e-card" key={profile.id}>
+              <Card className="e-card" key={profile.login}>
                 <div className="details">
 
                   <CardContent className="content">
@@ -107,6 +122,11 @@ class Home extends Component {
                     <Typography variant="subtitle2" color="textSecondary">
                       <Link style={{ textDecoration: 'none', color: '#A2A7AC', fontstyle: 'italic' }} to="google.com">Seguidores :</Link> {profile.followers}
                     </Typography>
+                    <Button onClick={this.onClick} icon='trash' size='mini' floated='left'></Button>
+
+                    <a href={profile.repos_url}><Button color='blue' icon='linkify' size='mini' floated='right'>Repositorios</Button></a>
+
+
                   </CardContent>
                 </div>
                 <CardMedia
@@ -114,12 +134,12 @@ class Home extends Component {
                   image={profile.avatar_url}
                   title="Live from space album cover"
                 />
-
               </Card>
+
             )}
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }

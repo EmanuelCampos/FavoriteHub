@@ -22,8 +22,11 @@ hr {
   height: 100px;
 }
 
+.ui.button {
+  margin: 5px;
+}
 .MuiCard-root {
-  height: 100px;
+  height: 131px;
 }
 
 .makeStyles-cover-3 {
@@ -31,10 +34,7 @@ hr {
 }
 
 button {
-  margin: 5px;
-  width: 199px;
-  height: 33px;
-  padding: 1px !important;
+
   border-radius: 5px;
 }
 
@@ -45,6 +45,11 @@ button {
   font-family: Roboto, sans-serif;
   font-weight: 700;
   font-size: 1em;
+  margin: 5px;
+  width: 193px;
+  height: 33px;
+  padding: 1px !important;
+  border-radius: 5px;
 }
 
 .e-card {
@@ -132,11 +137,9 @@ input {
   }
 
   input {
-    width: 200px;
   }
 
   button {
-    width: 208px;
   }
 }
 
@@ -161,7 +164,7 @@ input {
 }
 
 .cover {
-  width: 100px;
+  width: 130px;
 }
 
 input:-internal-autofill-selected {
