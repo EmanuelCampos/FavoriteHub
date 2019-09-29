@@ -55,7 +55,6 @@ button {
 .e-card {
   display: flex;
   margin-top: 10px;
-  border-left: 6px solid #3293e6;
 }
 
 .cards-box {

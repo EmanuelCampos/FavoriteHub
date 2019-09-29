@@ -48,7 +48,8 @@ class Home extends Component {
   }
 
   deleteProfile = () => {
-    localStorage.setItem('perfil', JSON.stringify(''))
+    const dado_remove = JSON.stringify(localStorage.setItem('perfil'))
+    this.setState({ profiles: dado_remove })
   }
 
   loadProfile = async () => {
