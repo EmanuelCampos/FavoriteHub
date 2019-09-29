@@ -6,6 +6,7 @@ import Avatar from '../assets/avatar.jpeg'
 import { Link } from 'react-router-dom'
 import { Input } from 'semantic-ui-react'
 import { Button } from 'semantic-ui-react'
+import { withRouter } from 'react-router-dom'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
@@ -30,6 +31,7 @@ class Home extends Component {
   onSubmit(e) {
     var title = this.title.value;
     this.loadProfile();
+    this.title.value = '';
   }
 
   onClick(e) {
@@ -44,15 +46,14 @@ class Home extends Component {
   componentDidMount() {
     const dados = JSON.parse(localStorage.getItem('perfil'))
     this.setState({ profiles: dados })
-
   }
 
   deleteProfile = (i) => {
     const profiles = this.state.profiles;
-    delete profiles[i];
+    profiles.splice(i, 1)
     localStorage.setItem('perfil', JSON.stringify(profiles));
 
-    this.setState({ profiles: profiles });
+    this.setState({ profiles: profiles })
   }
 
 
@@ -101,11 +102,7 @@ class Home extends Component {
 
           <hr></hr>
 
-          {this.state.isLoading &&
-            <span>Aguarde, carregando...</span>
-          }
           <div className="users">
-
 
             {profiles.map((profile, id) =>
               <Card className="e-card" key={profile.login}>
@@ -129,7 +126,7 @@ class Home extends Component {
                     <div className="content-button">
                       <Button onClick={() => this.deleteProfile(id)} icon='trash' size='tiny' floated='left'></Button>
 
-                      <a href={profile.repos_url}><Button color='blue' icon='linkify' size='tiny' floated='right'>Repositorios</Button></a>
+                      <Link to={`/${profile.login}`}><Button color='blue' icon='linkify' size='tiny' floated='right'>Repositorios</Button></Link>
 
                     </div>
                   </CardContent>
@@ -149,4 +146,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withRouter(Home)
