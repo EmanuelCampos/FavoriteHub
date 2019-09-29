@@ -48,8 +48,11 @@ class Home extends Component {
   }
 
   deleteProfile = () => {
-    const dado_remove = JSON.stringify(localStorage.setItem('perfil'))
-    this.setState({ profiles: dado_remove })
+    const profiles = this.state.profiles;
+    const removeProf = profiles.splice(this.state.profiles)
+    const removed = localStorage.setItem('perfil', JSON.stringify(removeProf));
+
+    this.setState({ profiles: removed })
   }
 
   loadProfile = async () => {
@@ -115,19 +118,20 @@ class Home extends Component {
                     <Typography variant="subtitle1" color="textSecondary">
                       {profile.blog}
                     </Typography>
-                    <Typography variant="subtitle2" color="textSecondary">
-                    </Typography>
-                    <Typography variant="subtitle2" color="textSecondary">
-                      <Link style={{ textDecoration: 'none', color: '#A2A7AC', fontstyle: 'italic' }} to="google.com">Repositorios :</Link> {profile.public_repos}
-                    </Typography>
-                    <Typography variant="subtitle2" color="textSecondary">
-                      <Link style={{ textDecoration: 'none', color: '#A2A7AC', fontstyle: 'italic' }} to="google.com">Seguidores :</Link> {profile.followers}
-                    </Typography>
-                    <Button onClick={this.onClick} icon='trash' size='mini' floated='left'></Button>
+                    <div className="content-titles">
+                      <Typography variant="subtitle2" color="textSecondary">
+                        <Link style={{ textDecoration: 'none', color: '#A2A7AC', fontstyle: 'italic' }} to="google.com">Repositorios :</Link> {profile.public_repos}
+                      </Typography>
+                      <Typography variant="subtitle2" color="textSecondary">
+                        <Link style={{ textDecoration: 'none', color: '#A2A7AC', fontstyle: 'italic' }} to="google.com">Seguidores :</Link> {profile.followers}
+                      </Typography>
+                    </div>
+                    <div className="content-button">
+                      <Button onClick={this.onClick} icon='trash' size='tiny' floated='left'></Button>
 
-                    <a href={profile.repos_url}><Button color='blue' icon='linkify' size='mini' floated='right'>Repositorios</Button></a>
+                      <a href={profile.repos_url}><Button color='blue' icon='linkify' size='tiny' floated='right'>Repositorios</Button></a>
 
-
+                    </div>
                   </CardContent>
                 </div>
                 <CardMedia
