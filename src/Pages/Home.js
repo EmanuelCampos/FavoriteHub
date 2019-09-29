@@ -47,13 +47,14 @@ class Home extends Component {
 
   }
 
-  deleteProfile = () => {
+  deleteProfile = (i) => {
     const profiles = this.state.profiles;
-    const removeProf = profiles.splice(this.state.profiles)
-    const removed = localStorage.setItem('perfil', JSON.stringify(removeProf));
+    delete profiles[i];
+    localStorage.setItem('perfil', JSON.stringify(profiles));
 
-    this.setState({ profiles: removed })
+    this.setState({ profiles: profiles });
   }
+
 
   loadProfile = async () => {
     try {
@@ -85,9 +86,8 @@ class Home extends Component {
                 name="title"
                 type="text"
                 icon="user"
-                iconPosition='left'
                 placeholder="Usuário do GitHub"
-                autoComplete="false"
+                autoComplete="off"
               />
             </form>
             <button
@@ -107,7 +107,7 @@ class Home extends Component {
           <div className="users">
 
 
-            {profiles.map(profile =>
+            {profiles.map((profile, id) =>
               <Card className="e-card" key={profile.login}>
                 <div className="details">
 
@@ -127,7 +127,7 @@ class Home extends Component {
                       </Typography>
                     </div>
                     <div className="content-button">
-                      <Button onClick={this.onClick} icon='trash' size='tiny' floated='left'></Button>
+                      <Button onClick={() => this.deleteProfile(id)} icon='trash' size='tiny' floated='left'></Button>
 
                       <a href={profile.repos_url}><Button color='blue' icon='linkify' size='tiny' floated='right'>Repositorios</Button></a>
 

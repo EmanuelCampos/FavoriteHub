@@ -59,7 +59,7 @@ hr {
 }
 
 button {
-
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   border-radius: 5px;
 }
 
@@ -102,6 +102,14 @@ input {
   font-size: 1em;
   text-align: center;
   border-radius: 5px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+input::placeholder {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .box {
@@ -161,7 +169,7 @@ input {
     align-items: center;
     flex-direction: row;
     margin-left: 15%;
-    width: 100%;
+    width: 1270px;
     flex-wrap: wrap;
     padding: 20px;
   }
