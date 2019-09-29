@@ -16,17 +16,19 @@ import axios from 'axios'
 
 
 const api = axios.create({ baseURL: 'https://api.github.com/users' })
+const api2 = axios.create({ baseURL: 'https://api.github.com/users' })
 
 class Profile extends Component {
     state = {
         profiles: [],
-        isLoading: false
+        isLoading: false,
+        repos: [],
     }
 
     componentDidMount() {
 
         this.loadProfile();
-
+        this.loadRepos();
     }
 
     loadProfile = async () => {
@@ -35,6 +37,23 @@ class Profile extends Component {
             const response = await api.get(this.props.location.pathname)
             profiles.push(response.data)
             this.setState({ profiles: profiles })
+
+        } catch {
+            alert("Error, tente novamente.")
+        }
+
+    }
+
+    loadRepos = async () => {
+        try {
+            const repos = this.state.repos;
+            const location = this.props.location.pathname
+            const responses = await api.get(`${location}/repos`)
+            repos.push(...responses.data)
+
+            this.setState({ repos: repos })
+            console.log(repos)
+
         } catch {
             alert("Error, tente novamente.")
         }
@@ -44,8 +63,10 @@ class Profile extends Component {
 
 
 
+
     render() {
         const { profiles } = this.state;
+        const { repos } = this.state;
         return (
             <div className="container">
                 <div className="box">
@@ -92,6 +113,35 @@ class Profile extends Component {
 
                         )}
                     </div>
+                    <div className="repos">
+                        {repos.map(repo =>
+
+                            <Card className="r-card">
+                                <Card.Content>
+                                    <Card.Header>{repo.name}</Card.Header>
+                                    <Card.Meta>
+                                        <span className='date'>{repo.url}</span>
+                                    </Card.Meta>
+                                    <Card.Description>
+                                        {repo.description}
+                                    </Card.Description>
+                                </Card.Content>
+                                <Card.Content extra>
+
+                                    <Icon name='star' />
+                                    {repo.stargazers_count} Stars
+
+</Card.Content>
+                            </Card>
+
+
+
+
+                        )}
+                    </div>
+
+
+
                 </div>
             </div>
 

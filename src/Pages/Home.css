@@ -35,6 +35,13 @@ hr {
 
 }
 
+.repos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .content-titles {
   margin-top: 5px;
 }
@@ -151,7 +158,8 @@ input::placeholder {
 }
 
 @media (min-width: 1281px) {
-  .box-itens {
+
+.box-itens {
     margin-top: 3%;
   }
   .cards-box {
@@ -226,4 +234,9 @@ input:-internal-autofill-selected {
   z-index: 1; /* Add a z-index if needed */
   left: 50%; /* Center the snackbar */
   bottom: 30px; /* 30px from the bottom */
+}
+
+
+.date {
+  word-break: break-all;
 }

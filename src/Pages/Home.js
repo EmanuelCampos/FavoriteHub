@@ -44,8 +44,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    const dados = JSON.parse(localStorage.getItem('perfil'))
-    this.setState({ profiles: dados })
+
   }
 
   deleteProfile = (i) => {
