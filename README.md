@@ -1,6 +1,6 @@
 ## FavoriteHub
 
-Salve seus perfis favoritos, para visualiza-los depois
+Salve seus perfis favoritos e acompanhe seus seguidores e repositorios =)
 
 ## Pendencias :
 
